@@ -1,3 +1,6 @@
 <Solution>
   <Project Path="MyBooks.API/MyBooks.API.csproj" />
+  <Project Path="MyBooks.Application/MyBooks.Application.csproj" Id="d79a7d63-efa0-4e79-b218-d35a5f97a4c6" />
+  <Project Path="MyBooks.Core/MyBooks.Core.csproj" Id="910f6fcf-89a2-49ee-a046-47ebe146e413" />
+  <Project Path="MyBooks.Infrastructure/MyBooks.Infrastructure.csproj" Id="4f6d8db3-1c2c-4ff9-97ac-6705aa75214b" />
 </Solution>

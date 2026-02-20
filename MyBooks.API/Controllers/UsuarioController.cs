@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MyBooks.Application.Commands.CommandsUsuario;
+using MyBooks.Application.Commands.InserirUsuario;
 
 namespace MyBooks.API.Controllers
 {

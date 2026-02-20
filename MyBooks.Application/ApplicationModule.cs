@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MyBooks.Application.Commands.CommandsUsuario;
+using MyBooks.Application.Commands.InserirUsuario;
 
 namespace MyBooks.Application
 {

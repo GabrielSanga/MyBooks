@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using MyBooks.Application.Models;
 
-namespace MyBooks.Application.Commands.CommandsUsuario
+namespace MyBooks.Application.Commands.InserirUsuario
 {
     public class InserirUsuarioCommand : IRequest<ResultViewModel<int>>
     {

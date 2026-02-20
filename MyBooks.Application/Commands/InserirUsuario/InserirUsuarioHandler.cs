@@ -3,7 +3,7 @@ using MyBooks.Application.Models;
 using MyBooks.Core.Entities;
 using MyBooks.Core.Repositories;
 
-namespace MyBooks.Application.Commands.CommandsUsuario
+namespace MyBooks.Application.Commands.InserirUsuario
 {
     public class InserirUsuarioHandler : IRequestHandler<InserirUsuarioCommand, ResultViewModel<int>>
     {

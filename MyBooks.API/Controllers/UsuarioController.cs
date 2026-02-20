@@ -20,6 +20,11 @@ namespace MyBooks.API.Controllers
         {
             var result = await _mediator.Send(usuarioCommand);
 
+            if (!result.Sucesso)
+            {
+                return BadRequest(result);
+            }
+
             return Ok(result);
         }
 

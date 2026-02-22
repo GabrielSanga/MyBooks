@@ -1,9 +1,14 @@
-﻿namespace MyBooks.Core.Entities
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace MyBooks.Application.Models
 {
-    public class Livro : BaseEntity
+    public class LivrosViewModel
     {
-        public Livro(string titulo, string descricao, string iSBN, string autor, string editora, string genero, DateTime anoPublicacao, string uRLCapa)
+        public LivrosViewModel(string idExterno, string titulo, string descricao, string iSBN, string autor, string editora, string genero, DateTime anoPublicacao, string uRLCapa)
         {
+            IdExterno = idExterno;
             Titulo = titulo;
             Descricao = descricao;
             ISBN = iSBN;
@@ -12,12 +17,9 @@
             Genero = genero;
             AnoPublicacao = anoPublicacao;
             URLCapa = uRLCapa;
-
-            Avaliacoes = [];
-            Bibliotecas = [];  
         }
 
-        public string IdExterno  { get; private set; }
+        public string IdExterno { get; private set; }
 
         public string Titulo { get; private set; }
 
@@ -34,10 +36,5 @@
         public DateTime AnoPublicacao { get; private set; }
 
         public string URLCapa { get; private set; }
-
-        public List<Avaliacao> Avaliacoes { get; private set; }
-
-        public List<Biblioteca> Bibliotecas { get; private set; }
-
     }
 }

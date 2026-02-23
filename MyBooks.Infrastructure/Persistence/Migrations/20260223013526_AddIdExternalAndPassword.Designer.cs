@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBooks.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using MyBooks.Infrastructure.Persistence;
 namespace MyBooks.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(MyBooksDBContext))]
-    partial class MyBooksDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260223013526_AddIdExternalAndPassword")]
+    partial class AddIdExternalAndPassword
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

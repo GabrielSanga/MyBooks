@@ -6,10 +6,11 @@ namespace MyBooks.Core.Entities
 {
     public class Usuario : BaseEntity
     {
-        public Usuario(string nome, string email)
+        public Usuario(string nome, string email, string senha)
         {
             Nome = nome;
             Email = email;
+            Senha = senha;
 
             Avaliacoes = [];
             Bibliotecas = [];
@@ -18,6 +19,8 @@ namespace MyBooks.Core.Entities
         public string Nome { get; private set; }
 
         public string Email { get; private set; }
+
+        public string Senha { get; private set; }
 
         public List<Avaliacao> Avaliacoes { get; private set; }
 

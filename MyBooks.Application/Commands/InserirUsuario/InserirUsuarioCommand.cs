@@ -9,5 +9,7 @@ namespace MyBooks.Application.Commands.InserirUsuario
 
         public string Email { get; set; }
 
+        public string Senha { get; set; }
+
     }
 }

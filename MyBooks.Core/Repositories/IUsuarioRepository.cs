@@ -10,5 +10,9 @@ namespace MyBooks.Core.Repositories
 
         Task<int> Inserir(Usuario usuario);
 
+        Task<Usuario?> ObterPorEmail(string email);
+
+        Task<Usuario?> ObterPorEmailESenha(string email, string hashSenha);
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBooks.Application.Queries.BuscarLivros;
 
@@ -6,6 +7,7 @@ namespace MyBooks.API.Controllers
 {
     [ApiController]
     [Route("api/livros")]
+    [Authorize]
     public class LivroController : ControllerBase
     {
 

@@ -22,5 +22,14 @@ namespace MyBooks.Infrastructure.Persistence.Repositories
             return usuario.Id;
         }
 
+        public Task<Usuario?> ObterPorEmail(string email)
+        {
+            return _dbContext.Usuarios.SingleOrDefaultAsync(u => u.Email == email);
+        }
+
+        public Task<Usuario?> ObterPorEmailESenha(string email, string hashSenha)
+        {
+            return _dbContext.Usuarios.SingleOrDefaultAsync(u => u.Email == email && u.Senha == hashSenha);
+        }
     }
 }

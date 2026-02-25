@@ -8,7 +8,7 @@ namespace MyBooks.API.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/usuarios")]
+    [Route("api/usuario")]
     public class UsuarioController : ControllerBase
     {
 
@@ -18,8 +18,8 @@ namespace MyBooks.API.Controllers
             _mediator = mediator;
         }
 
-        [AllowAnonymous]
         [HttpPost("/login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Logar(LogarUsuarioCommand usuarioCommand)
         {
             var result = await _mediator.Send(usuarioCommand);

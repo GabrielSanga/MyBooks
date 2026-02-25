@@ -1,27 +1,26 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MyBooks.Application.Queries.BuscarLivros;
+using MyBooks.Application.Commands.AdicionarLivro;
 
 namespace MyBooks.API.Controllers
 {
-    [ApiController]
-    [Route("api/livro")]
+
     [Authorize]
-    public class LivroController : ControllerBase
+    [ApiController]
+    [Route("api/biblioteca")]
+    public class BibliotecaController : ControllerBase
     {
-
         private readonly IMediator _mediator;
-
-        public LivroController(IMediator mediator)
+        public BibliotecaController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetLivros(string titulo, string autor = "", string genero = "")
+        [HttpPost]
+        public async Task<IActionResult> Adicionar(AdicionarLivroCommand adicionarLivroCommand)
         {
-            var result = await _mediator.Send(new BuscarLivrosQuery(titulo, autor, genero));
+            var result = await _mediator.Send(adicionarLivroCommand);
 
             if (!result.Sucesso)
             {

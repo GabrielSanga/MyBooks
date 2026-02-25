@@ -48,7 +48,7 @@ namespace MyBooks.Infrastructure.Authenticate
 
             var claims = new List<Claim>
             {
-                new Claim("username", email)
+                new Claim(ClaimTypes.Email, email)
             };
 
             var token = new JwtSecurityToken(issuer, audience, claims, null, DateTime.Now.AddHours(1), signingCredentials: credentials);

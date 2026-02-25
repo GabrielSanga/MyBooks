@@ -2,8 +2,9 @@
 {
     public class Livro : BaseEntity
     {
-        public Livro(string titulo, string descricao, string iSBN, string autor, string editora, string genero, DateTime anoPublicacao, string uRLCapa)
+        public Livro(string titulo, string descricao, string iSBN, string autor, string editora, string genero, DateTime anoPublicacao, string uRLCapa, string idExterno)
         {
+            IdExterno = idExterno;
             Titulo = titulo;
             Descricao = descricao;
             ISBN = iSBN;

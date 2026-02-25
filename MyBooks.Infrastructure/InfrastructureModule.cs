@@ -37,6 +37,8 @@ namespace MyBooks.Infrastructure
         private static IServiceCollection AddRepostory(this IServiceCollection services)
         {
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<ILivroRepository, LivroRepository>();
+            services.AddScoped<IBibliotecaRepository, BibliotecaRepository>();
 
             return services;
         }
@@ -56,7 +58,10 @@ namespace MyBooks.Infrastructure
 
         private static IServiceCollection AddAuthorization(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddHttpContextAccessor();
+
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUserSession, UserSession>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(o =>

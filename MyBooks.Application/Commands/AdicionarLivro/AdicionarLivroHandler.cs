@@ -29,7 +29,7 @@ namespace MyBooks.Application.Commands.AdicionarLivro
             var usuario = await _usuarioRepository.ObterPorEmail(_userSession.Email);
             if (usuario == null)
             {
-                return ResultViewModel<int>.Erro("Usuário não encontrado.");
+                return ResultViewModel<int>.Erro("Usuário não autenticado.");
             }
 
             var livro = await _livroRepository.ObterPorIdExternal(request.IdExternoLivro);

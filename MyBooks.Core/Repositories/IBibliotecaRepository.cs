@@ -1,7 +1,4 @@
 ﻿using MyBooks.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MyBooks.Core.Repositories
 {
@@ -9,6 +6,8 @@ namespace MyBooks.Core.Repositories
     {
 
         Task<int> AdicionarLivroNaBiblioteca(Biblioteca biblioteca);
+
+        Task<List<Biblioteca>> BuscarBibliotecaPorIdUsuario(int idUsuario);
 
     }
 }

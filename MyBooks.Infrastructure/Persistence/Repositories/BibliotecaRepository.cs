@@ -1,4 +1,5 @@
-﻿using MyBooks.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using MyBooks.Core.Entities;
 using MyBooks.Core.Repositories;
 
 namespace MyBooks.Infrastructure.Persistence.Repositories
@@ -17,6 +18,17 @@ namespace MyBooks.Infrastructure.Persistence.Repositories
             await _dbContext.SaveChangesAsync();
 
             return biblioteca.Id;
+        }
+
+        public async Task<List<Biblioteca>> BuscarBibliotecaPorIdUsuario(int idUsuario)
+        {
+            var bibliotecas = await _dbContext.Bibliotecas
+                                              .Include(b => b.Livro)
+                                              .Include(b => b.Usuario)
+                                              .Where(b => b.IdUsuario == idUsuario)
+                                              .ToListAsync();
+
+            return bibliotecas;
         }
     }
 }

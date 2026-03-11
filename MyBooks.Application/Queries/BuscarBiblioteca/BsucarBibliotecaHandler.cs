@@ -27,9 +27,9 @@ namespace MyBooks.Application.Queries.BuscarBiblioteca
                 return ResultViewModel<List<BibliotecaLivroViewModel>>.Erro("Usuário não autenticado.");
             }
 
-            var bibliotecas = await _bibliotecaRepository.BuscarBibliotecaPorIdUsuario(usuario.Id);
+            var bibliotecas = await _bibliotecaRepository.BuscarLivroPorIdUsuario(usuario.Id);
 
-            var model = bibliotecas.Select(b => new BibliotecaLivroViewModel(b.Livro.IdExterno, b.Livro.Titulo, b.Livro.Descricao, b.Livro.ISBN, b.Livro.Autor, b.Livro.Editora, b.Livro.Genero, b.Livro.AnoPublicacao, b.Livro.URLCapa, b.Status)).ToList();
+            var model = bibliotecas.Select(b => new BibliotecaLivroViewModel(b.Id, b.Livro.IdExterno, b.Livro.Titulo, b.Livro.Descricao, b.Livro.ISBN, b.Livro.Autor, b.Livro.Editora, b.Livro.Genero, b.Livro.AnoPublicacao, b.Livro.URLCapa, b.Status)).ToList();
 
             return ResultViewModel<List<BibliotecaLivroViewModel>>.Ok(model);
         }

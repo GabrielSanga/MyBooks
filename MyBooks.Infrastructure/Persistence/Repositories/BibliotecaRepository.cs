@@ -12,7 +12,7 @@ namespace MyBooks.Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<int> AdicionarLivroNaBiblioteca(Biblioteca biblioteca)
+        public async Task<int> AdicionarLivro(Biblioteca biblioteca)
         {
             await _dbContext.Bibliotecas.AddAsync(biblioteca);
             await _dbContext.SaveChangesAsync();
@@ -20,7 +20,17 @@ namespace MyBooks.Infrastructure.Persistence.Repositories
             return biblioteca.Id;
         }
 
-        public async Task<List<Biblioteca>> BuscarBibliotecaPorIdUsuario(int idUsuario)
+        public async Task<Biblioteca?> BuscarLivroPorId(int IdLivro)
+        {
+            var biblioteca = await _dbContext.Bibliotecas
+                             .Include(b => b.Livro)
+                             .Include(b => b.Usuario)
+                             .FirstOrDefaultAsync(b => b.IdLivro == IdLivro);
+
+            return biblioteca;
+        }
+
+        public async Task<List<Biblioteca>> BuscarLivroPorIdUsuario(int idUsuario)
         {
             var bibliotecas = await _dbContext.Bibliotecas
                                               .Include(b => b.Livro)
@@ -29,6 +39,12 @@ namespace MyBooks.Infrastructure.Persistence.Repositories
                                               .ToListAsync();
 
             return bibliotecas;
+        }
+
+        public async Task UpdateLivro(Biblioteca biblioteca)
+        {
+            _dbContext.Bibliotecas.Update(biblioteca);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

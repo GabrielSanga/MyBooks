@@ -46,7 +46,7 @@ namespace MyBooks.Application.Commands.AdicionarLivro
             }
 
             var biblioteca = new Biblioteca(usuario.Id, livro.Id);
-            await _bibliotecaRepository.AdicionarLivroNaBiblioteca(biblioteca);
+            await _bibliotecaRepository.AdicionarLivro(biblioteca);
 
             return ResultViewModel<int>.Ok(biblioteca.Id);
         }

@@ -5,9 +5,13 @@ namespace MyBooks.Core.Repositories
     public interface IBibliotecaRepository
     {
 
-        Task<int> AdicionarLivroNaBiblioteca(Biblioteca biblioteca);
+        Task<int> AdicionarLivro(Biblioteca biblioteca);
 
-        Task<List<Biblioteca>> BuscarBibliotecaPorIdUsuario(int idUsuario);
+        Task<List<Biblioteca>> BuscarLivroPorIdUsuario(int idUsuario);
+
+        Task<Biblioteca?> BuscarLivroPorId(int IdLivro);
+
+        Task UpdateLivro(Biblioteca biblioteca);
 
     }
 }

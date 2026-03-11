@@ -4,8 +4,9 @@ namespace MyBooks.Application.Models
 {
     public class BibliotecaLivroViewModel
     {
-        public BibliotecaLivroViewModel(string idExterno, string titulo, string descricao, string iSBN, string autor, string editora, string genero, DateTime anoPublicacao, string uRLCapa, BibliotecaStatus status)
+        public BibliotecaLivroViewModel(int idBiblioteca, string idExterno, string titulo, string descricao, string iSBN, string autor, string editora, string genero, DateTime anoPublicacao, string uRLCapa, BibliotecaStatus status)
         {
+            IdBiblioteca = idBiblioteca;
             IdExterno = idExterno;
             Titulo = titulo;
             Descricao = descricao;
@@ -17,6 +18,8 @@ namespace MyBooks.Application.Models
             URLCapa = uRLCapa;
             Status = status;
         }
+
+        public int IdBiblioteca { get; private set; }
 
         public string IdExterno { get; private set; }
 

@@ -7,7 +7,6 @@ using MyBooks.Application.Commands.AlterarLivroCancelado;
 using MyBooks.Application.Commands.AlterarLivroLendo;
 using MyBooks.Application.Commands.AlterarLivroQueroLer;
 using MyBooks.Application.Queries.BuscarBiblioteca;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MyBooks.API.Controllers
 {

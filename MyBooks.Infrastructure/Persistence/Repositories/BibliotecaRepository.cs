@@ -1,11 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MyBooks.Core.Entities;
+using MyBooks.Core.ReadModels;
 using MyBooks.Core.Repositories;
+using MyBooks.Infrastructure.Persistence.Extensions;
 
 namespace MyBooks.Infrastructure.Persistence.Repositories
 {
     public class BibliotecaRepository : IBibliotecaRepository
     {
+        private const int PAGE_SIZE = 2;
+
         private readonly MyBooksDBContext _dbContext;
 
         public BibliotecaRepository(MyBooksDBContext dbContext) { 
@@ -30,13 +34,13 @@ namespace MyBooks.Infrastructure.Persistence.Repositories
             return biblioteca;
         }
 
-        public async Task<List<Biblioteca>> BuscarLivroPorIdUsuario(int idUsuario)
+        public async Task<PaginationResult<Biblioteca>> BuscarLivroPorIdUsuario(int idUsuario, int page = 1)
         {
             var bibliotecas = await _dbContext.Bibliotecas
                                               .Include(b => b.Livro)
                                               .Include(b => b.Usuario)
                                               .Where(b => b.IdUsuario == idUsuario)
-                                              .ToListAsync();
+                                              .GetPaged(page, PAGE_SIZE);
 
             return bibliotecas;
         }

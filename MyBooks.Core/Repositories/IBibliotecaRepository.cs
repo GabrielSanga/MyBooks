@@ -1,4 +1,5 @@
 ﻿using MyBooks.Core.Entities;
+using MyBooks.Core.ReadModels;
 
 namespace MyBooks.Core.Repositories
 {
@@ -7,7 +8,7 @@ namespace MyBooks.Core.Repositories
 
         Task<int> AdicionarLivro(Biblioteca biblioteca);
 
-        Task<List<Biblioteca>> BuscarLivroPorIdUsuario(int idUsuario);
+        Task<PaginationResult<Biblioteca>> BuscarLivroPorIdUsuario(int idUsuario, int page = 1);
 
         Task<Biblioteca?> BuscarLivroPorId(int IdLivro);
 

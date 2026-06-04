@@ -36,6 +36,7 @@ namespace MyBooks.Infrastructure
 
         private static IServiceCollection AddRepostory(this IServiceCollection services)
         {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<IBibliotecaRepository, BibliotecaRepository>();

@@ -9,30 +9,26 @@ namespace MyBooks.Application.Commands.AdicionarLivro
 {
     public class AdicionarLivroHandler : IRequestHandler<AdicionarLivroCommand, ResultViewModel<int>>
     {
-        private readonly ILivroRepository _livroRepository;
-        private readonly IBibliotecaRepository _bibliotecaRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IBookService _bookService;        
         private readonly IUserSession _userSession;
-        private readonly IUsuarioRepository _usuarioRepository;
 
-        public AdicionarLivroHandler(ILivroRepository livroRepository, IBibliotecaRepository bibliotecaRepository, IBookService bookService, IUserSession userSession, IUsuarioRepository usuarioRepository)
+        public AdicionarLivroHandler(IUnitOfWork unitOfWork, IBookService bookService, IUserSession userSession)
         {
-            _livroRepository = livroRepository;
-            _bibliotecaRepository = bibliotecaRepository;
+            _unitOfWork = unitOfWork;
             _bookService = bookService;
             _userSession = userSession;
-            _usuarioRepository = usuarioRepository;
         }
 
         public async Task<ResultViewModel<int>> Handle(AdicionarLivroCommand request, CancellationToken cancellationToken)
         {
-            var usuario = await _usuarioRepository.ObterPorEmail(_userSession.Email);
+            var usuario = await _unitOfWork.Usuarios.ObterPorEmail(_userSession.Email);
             if (usuario == null)
             {
                 return ResultViewModel<int>.Erro("Usuário não autenticado.");
             }
 
-            var livro = await _livroRepository.ObterPorIdExternal(request.IdExternoLivro);
+            var livro = await _unitOfWork.Livros.ObterPorIdExternal(request.IdExternoLivro);
             if (livro == null)
             {
                 var livroApi = await _bookService.BuscarLivro(request.IdExternoLivro);
@@ -42,11 +38,13 @@ namespace MyBooks.Application.Commands.AdicionarLivro
 
                 livro = new Livro(livroApi.Titulo, livroApi.Descricao, livroApi.ISBN, livroApi.Autor, livroApi.Editora, livroApi.Genero, livroApi.AnoPublicacao, livroApi.URLCapa, request.IdExternoLivro);
 
-                await _livroRepository.Adicionar(livro);
+                await _unitOfWork.Livros.Adicionar(livro);
             }
 
             var biblioteca = new Biblioteca(usuario.Id, livro.Id);
-            await _bibliotecaRepository.AdicionarLivro(biblioteca);
+            await _unitOfWork.Bibliotecas.AdicionarLivro(biblioteca);
+
+            await _unitOfWork.SaveChangesAsync();
 
             return ResultViewModel<int>.Ok(biblioteca.Id);
         }

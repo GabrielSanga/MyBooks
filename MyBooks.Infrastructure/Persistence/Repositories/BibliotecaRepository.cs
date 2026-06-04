@@ -19,8 +19,6 @@ namespace MyBooks.Infrastructure.Persistence.Repositories
         public async Task<int> AdicionarLivro(Biblioteca biblioteca)
         {
             await _dbContext.Bibliotecas.AddAsync(biblioteca);
-            await _dbContext.SaveChangesAsync();
-
             return biblioteca.Id;
         }
 

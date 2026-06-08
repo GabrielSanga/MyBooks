@@ -52,7 +52,7 @@ namespace MyBooks.Application.Commands.AdicionarLivro
                     await _unitOfWork.SaveChangesAsync();
                 } 
 
-                var biblioteca = new Biblioteca(usuario.Id, livro.Id);
+                var biblioteca = new Biblioteca(usuario, livro);
                 await _unitOfWork.Bibliotecas.AdicionarLivro(biblioteca);
                 await _unitOfWork.SaveChangesAsync();
 
